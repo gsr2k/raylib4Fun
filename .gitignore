@@ -1,0 +1,10 @@
+# Executáveis
+main
+
+# Arquivos temporários do VS Code
+.vscode/
+
+# Builds
+build/
+bin/
+obj/
