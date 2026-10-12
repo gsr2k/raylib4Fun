@@ -2,7 +2,7 @@
 #include "State.h"
 #include <raylib.h>
 
-    
+ extern enum gameState currentState;
 
  void drawMenu (void)
  {
@@ -43,36 +43,23 @@
         if (IsKeyPressed (KEY_DOWN))
         {
             menuOption++;
+            if (menuOption > 3) menuOption = 1;
         } else if (IsKeyPressed (KEY_UP)) {
             menuOption --;
+            if (menuOption < 1) menuOption = 3;
         }
 
-        switch (menuOption)
-        {
-        case 1: 
-                DrawRectangleRec (option1, selected);
-                DrawText("Play", 350 + (100 - MeasureText("Play", 15)) / 2, 292, 15, WHITE);                
-            break;
-
-        case 2:
-                DrawRectangleRec (option2, selected);
-                DrawText("Options", 350 + (100 - MeasureText("Options", 15)) / 2, 352, 15, WHITE);
-            break;
-
-        case 3:
-                DrawRectangleRec (option3, selected);
-                DrawText("About", 350 + (100 - MeasureText("About", 15)) / 2, 412, 15, WHITE);
-            break;
-        
-        default:
-                //loop 
-                if (menuOption > 3)
-                    {
-                        menuOption = 1;
-                    } else if (menuOption < 1) {
-                        menuOption = 3;
-                    }
-
-            break;
+        if (IsKeyPressed(KEY_ENTER)) {
+        if (menuOption == 1) currentState = ON_GAME;
+        else if (menuOption == 2) currentState = ON_OPTIONS;
+        else if (menuOption == 3) currentState = ON_CREDITS;
         }
+
+        DrawRectangleRec(option1, (menuOption == 1) ? PINK : WHITE);
+        DrawRectangleRec(option2, (menuOption == 2) ? PINK : WHITE);
+        DrawRectangleRec(option3, (menuOption == 3) ? PINK : WHITE);
+
+        DrawText("Play",    350 + (100 - MeasureText("Play", 15)) / 2,    292, 15, (menuOption == 1) ? WHITE : BLACK);
+        DrawText("Options", 350 + (100 - MeasureText("Options", 15)) / 2, 352, 15, (menuOption == 2) ? WHITE : BLACK);
+        DrawText("About",   350 + (100 - MeasureText("About", 15)) / 2,   412, 15, (menuOption == 3) ? WHITE : BLACK);
  }
