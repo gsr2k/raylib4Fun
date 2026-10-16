@@ -62,4 +62,6 @@
         DrawText("Play",    350 + (100 - MeasureText("Play", 15)) / 2,    292, 15, (menuOption == 1) ? WHITE : BLACK);
         DrawText("Options", 350 + (100 - MeasureText("Options", 15)) / 2, 352, 15, (menuOption == 2) ? WHITE : BLACK);
         DrawText("About",   350 + (100 - MeasureText("About", 15)) / 2,   412, 15, (menuOption == 3) ? WHITE : BLACK);
+
  }
+ 

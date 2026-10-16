@@ -4,10 +4,10 @@
 extern enum gameState currentState;
 
 void updateMusicState(
-    Music mainTheme,
-    Music gameTheme,
-    Music optionsTheme,
-    Music creditsTheme
+    Music *mainTheme,
+    Music *gameTheme,
+    Music *optionsTheme,
+    Music *creditsTheme
 )
 {
     static int previousState = 0;
@@ -17,38 +17,38 @@ void updateMusicState(
         switch (previousState)
         {
             case ON_MENU:
-                StopMusicStream(mainTheme);
+                StopMusicStream(*mainTheme);
                 break;
 
             case ON_GAME:
-                StopMusicStream(gameTheme);
+                StopMusicStream(*gameTheme);
                 break;
 
             case ON_OPTIONS:
-                StopMusicStream(optionsTheme);
+                StopMusicStream(*optionsTheme);
                 break;
 
             case ON_CREDITS:
-                StopMusicStream(creditsTheme);
+                StopMusicStream(*creditsTheme);
                 break;
         }
 
         switch (currentState)
         {
             case ON_MENU:
-                PlayMusicStream(mainTheme);
+                PlayMusicStream(*mainTheme);
                 break;
 
             case ON_GAME:
-                PlayMusicStream(gameTheme);
+                PlayMusicStream(*gameTheme);
                 break;
 
             case ON_OPTIONS:
-                PlayMusicStream(optionsTheme);
+                PlayMusicStream(*optionsTheme);
                 break;
 
             case ON_CREDITS:
-                PlayMusicStream(creditsTheme);
+                PlayMusicStream(*creditsTheme);
                 break;
         }
 
@@ -58,19 +58,19 @@ void updateMusicState(
     switch (currentState)
     {
         case ON_MENU:
-            UpdateMusicStream(mainTheme);
+            UpdateMusicStream(*mainTheme);
             break;
 
         case ON_GAME:
-            UpdateMusicStream(gameTheme);
+            UpdateMusicStream(*gameTheme);
             break;
 
         case ON_OPTIONS:
-            UpdateMusicStream(optionsTheme);
+            UpdateMusicStream(*optionsTheme);
             break;
 
         case ON_CREDITS:
-            UpdateMusicStream(creditsTheme);
+            UpdateMusicStream(*creditsTheme);
             break;
     }
 }
